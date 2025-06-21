@@ -79,8 +79,12 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
             ),
             SizedBox(height: 20),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(double.infinity, 45),
+                backgroundColor: Colors.amber,
+              ),
               onPressed: _saveNote,
-              child: Text(widget.isEdit ? 'Update' : 'Save'),
+              child: Text(widget.isEdit ? 'Update' : 'Save', style: TextStyle(color: Colors.white),),
             ),
           ],
         ),
