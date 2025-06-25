@@ -6,22 +6,25 @@ import 'add_edit_note_screen.dart';
 class HomePage extends StatelessWidget {
   final Box<NotesModel> notesBox = Hive.box<NotesModel>('notesBox');
 
-  void _deleteNote(BuildContext context ,int index) {
-
-
-    showDialog(context: context, builder: (context) {
-      return AlertDialog(
-        title: const Text('Are you sure you want to delete this Note ?'),
-        actions: [
-          TextButton(onPressed: ()=>Navigator.pop(context), child: Text('Cancel')),
-
-          TextButton(onPressed: (){
-            notesBox.deleteAt(index);
-            Navigator.pop(context);
-          }, child: Text('Delete'))
-        ],
-      );
-    },);
+  void _deleteNote(BuildContext context, int index) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Are you sure you want to delete this Note ?'),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(context), child: Text('Cancel')),
+            TextButton(
+                onPressed: () {
+                  notesBox.deleteAt(index);
+                  Navigator.pop(context);
+                },
+                child: Text('Delete'))
+          ],
+        );
+      },
+    );
   }
 
   void editNote(BuildContext context, NotesModel note, int index) {
@@ -65,12 +68,18 @@ class HomePage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     IconButton(
-                      icon: Icon(Icons.edit, color: Colors.blue,),
+                      icon: Icon(
+                        Icons.edit,
+                        color: Colors.blue,
+                      ),
                       onPressed: () => editNote(context, note, index),
                     ),
                     IconButton(
-                      icon: Icon(Icons.delete, color: Colors.red,),
-                      onPressed: () => _deleteNote(context,index),
+                      icon: Icon(
+                        Icons.delete,
+                        color: Colors.red,
+                      ),
+                      onPressed: () => _deleteNote(context, index),
                     ),
                   ],
                 ),
@@ -82,7 +91,10 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.amber,
         onPressed: () => addNote(context),
-        child: Icon(Icons.add, color: Colors.white,),
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }
